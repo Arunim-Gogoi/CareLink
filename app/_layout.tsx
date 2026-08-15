@@ -7,9 +7,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { supabase } from '../lib/supabase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const unstable_settings = {
-  anchor: 'auth',
-};
+
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
