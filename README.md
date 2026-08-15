@@ -1,50 +1,51 @@
-# Welcome to your Expo app 👋
+# CareLink
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+CareLink is a full-stack healthcare app that connects patients and families with hospital attendants, home nurses, and blood donors across North-East India.
 
-## Get started
+## Overview
 
-1. Install dependencies
+Built as a dual-role mobile experience — one flow for **Patients/Family** looking for care, and one for **Attendants/Nurses** looking for work — CareLink handles the entire lifecycle from booking a request to job completion and rating.
 
-   ```bash
-   npm install
-   ```
+## Features
 
-2. Start the app
+- **Role-aware navigation** — separate tab experiences for Patient/Family vs. Attendant/Nurse roles
+- **Booking system** — request forms with date/time pickers for scheduling attendant or nurse visits
+- **Open requests marketplace** — attendants/nurses can browse and accept open care requests
+- **Job completion & rating flow** — star-based rating system after job completion
+- **Attendant tier progression** — a 4-tier system (Tier 1–4) based on completed jobs and ratings, rewarding reliable caregivers
+- **Blood donor directory** — searchable directory to connect patients with blood donors
+- **Platform fee configuration** — centralized fee logic (7.5% for hospital attendants, 9.5% for home nurses)
 
-   ```bash
-   npx expo start
-   ```
+## Tech Stack
 
-In the output, you'll find options to open the app in a
+| Layer | Technology |
+|---|---|
+| Mobile | React Native (Expo SDK 54), Expo Router |
+| Language | TypeScript |
+| Backend | Node.js |
+| Database | Supabase (PostgreSQL, Mumbai region) |
+| Local Storage | AsyncStorage |
+| Build | EAS Build (Android APK) |
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Architecture Notes
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Dual-role design**: rather than separate apps, a single codebase branches navigation and UI based on the logged-in user's role, keeping shared logic (auth, booking, ratings) centralized.
+- **Tier system**: attendant tiers are computed from job count and average rating, incentivizing quality of service over time.
+- **Fee config**: platform commission rates are defined in a single config source so pricing logic isn't scattered across screens.
 
-## Get a fresh project
-
-When you're ready, run:
+## Getting Started
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+You'll need a `.env` file with your own Supabase project URL and anon key (see `.env.example`) to run this locally — these are intentionally excluded from version control.
 
-## Learn more
+## Status
 
-To learn more about developing your project with Expo, look at the following resources:
+APK builds successfully via EAS Build. Currently in active debugging phase, with a phased rollout planned via WhatsApp/Expo tunnel distribution and direct hospital outreach ahead of a Play Store submission.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Author
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Built by Arunim Gogoi.
